@@ -1,4 +1,4 @@
-# How to eat TensorFlow2 in 30 days ?🔥🔥
+# TensorFlow2 30 일 안에 해치우기 ?🔥🔥
 
 Click here for [Chinese Version（中文版）](#30天吃掉那只-tensorflow2)
 
@@ -13,24 +13,24 @@ Click here for [Chinese Version（中文版）](#30天吃掉那只-tensorflow2)
 
 ### 1. TensorFlow2 🍎 or Pytorch🔥
 
-Conclusion first: 
+결론: 
 
-**For the engineers, priority goes to TensorFlow2.**
+**엔지니어는 TensorFlow2를 먼저 배우세요.**
 
-**For the students and researchers，first choice should be Pytorch.**
+**학생이나 연구자라면, 파이토치를 먼저 선택하세요.**
 
-**The best way is to master both of them if having sufficient time.**
-
-
-Reasons:
-
-* 1. **Model implementation is the most important in the industry. Deployment supporting tensorflow models (not Pytorch) exclusively is the present situation in the majority of the Internet enterprises in China.** What's more, the industry prefers the models with higher availability; in most cases, they use well-validated modeling architectures with the minimized requirements of adjustment.
+**시간의 여유가 있다면, 둘 다 배우는 것이 가장 좋습니다.**
 
 
-* 2. **Fast iterative development and publication is the most important for the researchers since they need to test a lot of new models. Pytorch has advantages in accessing and debugging comparing with TensorFlow2.** Pytorch is most frequently used in academy since 2019 with a large amount of the cutting-edge results.
+이유:
+
+* 1. **업계에서는 모델 구현이 가장 중요합니다. 중국의 주요 인터넷 기업에서 tensorflow 모델(pytorch가 아님)을 독점적으로 사용하는게 현재 상황입니다.** 더불어, 업계에서는 많이 쓰일 수 있는 모델을 선호합니다. 대부분의 경우, 조금만 수정해서 사용할 수 있는 모델을 사용합니다. 
 
 
-* 3. Overall, TensorFlow2 and Pytorch are quite similar in programming nowadays, so mastering one helps learning the other. Mastering both framework provides you a lot more open-sourced models and helps you switching between them.
+* 2. **수많은 새로운 모델을 테스트 해야하기 때문에 빠르게 반복해서 개발하고 발표하는 것은 연구자에게 매우 중요합니다. pytorch는 tensorflow와 비교하여 접근하고 디버깅하는데 장점을 가지고 있습니다.** Pytorch는 최신의 결과가 많이 있고, 2019년 이후에 대학에서 가장 많이 사용되고 있습니다. 
+
+
+* 3. 종합해보면, Tensorflow와 Pytorch는 현시대의 프로그래밍에서는 매우 유사합니다. 그래서 하나를 배우면, 다른 하나를 배우는데 도움이 됩니다. 둘 다를 배우는 것은 더 많은 공개된 모델을 다룰 수 있게 되고, 둘 사이를 전환하는데 도움이 됩니다. 
 
 ```python
 
@@ -38,57 +38,57 @@ Reasons:
 
 ### 2. Keras🍏 and tf.keras 🍎
 
-Conclusion first: 
+결론: 
 
-**Keras will be discontinued in development after version 2.3.0, so use tf.keras.**
-
-
-Keras is a high-level API for the deep learning frameworks. It help the users to define and training DL networks with a more intuitive way.
-
-The Keras libraries installed by pip implement this high-level API for the backends in tensorflow, theano, CNTK, etc.
-
-tf.keras is the high-level API just for Tensorflow, which is based on low-level APIs in Tensorflow.
-
-Most but not all of the functions in tf.keras are the same for those in Keras (which is compatible to many kinds of backend). tf.keras has a tighter combination to TensorFlow comparing to Keras.
-
-With the acquisition by Google, Keras will not update after version 2.3.0 , thus the users should use tf.keras from now on, instead of using Keras installed by pip.
-
-```python
-
-```
-
-### 3. What Should You Know Before Reading This Book 📖?
-
-**It is suggested that the readers have foundamental knowledges of machine/deep learning and experience of modeling using Keras or TensorFlow 1.0.**
-
-**For those who have zero experience of machine/deep learning, it is strongly suggested to refer to ["Deep Learning with Python"](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=sr_1_1?dchild=1&keywords=Deep+Learning+with+Python&qid=1586194568&sr=8-1) along with reading this book.**
+**Keras 는 2.3.0부터 개발되지 않을 것입니다. 그러니 tf.keras를 사용하세요.**
 
 
-["Deep Learning with Python"](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=sr_1_1?dchild=1&keywords=Deep+Learning+with+Python&qid=1586194568&sr=8-1) is written by François Chollet, the inventor of Keras. This book is based on Keras and has no machine learning related prerequisites to the reader.
+Keras는 딥러닝을 위한 고수준의 API입니다. Keras는 사용자가 좀 더 직관적으로 딥러닝 네트워크를 정의하고 학습할 수 있게 합니다. 
 
-"Deep Learning with Python" is easy to understand as it uses various examples to demonstrate. **No mathematical equation is in this book since it focuses on cultivating the intuitive to the deep learning.**
+pip로 설치한 Keras 라이브러리는 tensorflow, theano, CNTK 등등에서 사용할 수 있는 API 입니다. 
 
+tf.keras는 Tensorflow만을 위한 고 수준의 API이고, tensorflow의 저수준 API를 기반합니다. 
+
+tf.keras에서 대부분의 함수는 Keras와 동일합니다.(그래서 다른 종류의 백엔드와 호환됩니다) tf.keras는 Keras 보다 Tensorflow에 더 충실합니다. 
+
+keras는 구글에 인수되면서 2.3.0 이후로 업데이트 하지 않을 것입니다. 그러므로 지금부터는 pip로 Keras를 설치하는 대신 tf.keras를 사용해야 합니다. 
 
 ```python
 
 ```
 
-### 4. Writing Style 🍉 of This Book
+### 3. 이 책을 읽기 전에 알아야 할 것이 있나요 📖?
+
+**머신 러닝 혹은 딥러닝의 기초 지식과 Keras나 Tensorflow로 모델링한 경험을 가지고 있으면 좋습니다.**
+
+**만약 머신 러닝 혹은 딥러닝에 대한 경험이 전혀 없다면, ["케라스 창시자에게 배우는 딥러닝"](https://book.naver.com/bookdb/book_detail.nhn?bid=14069088) 을 같이 읽기를 권장합니다.**
 
 
-**This is a introduction reference book which is extremely friendly to human being. The lowest goal of the authors is to avoid giving up due to the difficulties, while "Don't let the readers think" is the highest target.**
+["케라스 창시자에게 배우는 딥러닝"](https://book.naver.com/bookdb/book_detail.nhn?bid=14069088) 은 Keras의 창시자 François Chollet가 썼습니다. 이 책은 머신러닝에 경험이 없는 독자들을 대상으로 Keras에 기반한 책입니다. 
 
-This book is mainly based on the official documents of TensorFlow together with its functions.
+"케라스 창시자에게 배우는 딥러닝" 은 이해하기 쉽고 다양한 예제들을 보여줍니다. **이 책에는 직관적 인 것을 딥 러닝으로 육성하는 데 초점을 맞추고 있으므로이 책에는 수학 방정식이 없습니다.**
 
-However, the authors made a thorough restructuring and a lot optimizations on the demonstrations.
 
-It is different from the official documents, which is disordered and contains both tutorial and guidance with lack of systematic logic, that our book redesigns the content according to the difficulties, readers' searching habits, and the architecture of TensorFlow. We now make it progressive for TensorFlow studying with a clear path, and an easy access to the corresponding examples.
+```python
 
-In contrast to the verbose demonstrating code, the authors of this book try to minimize the length of the examples to make it easy for reading and implementation. What's more, most of the code cells can be used in your project instantaneously.
+```
 
-**Given the level of difficulty as 9 for learning Tensorflow through official documents, it would be reduced to 3 if learning through this book.**
+### 4. 이 책의 스타일 🍉 
 
-This difference in difficulties could be demonstrated as the following figure:
+
+**이 책은 사람 친화적인 참고서 입니다. 저자의 낮은 목표는 어려워서 포기 하지 않게 하는 것이고, 독자가 생각하게 하지 않는다가 높은 목표입니다.**
+
+이 책은 기본적으로 Tensorflow 공식 문서를 따릅니다. 
+
+하지만, 저자가 예제를 최적화하여 다시 만들었습니다. 
+
+공식 문서가 예제와 가이드가 혼란스럽게 배열 되어 있어 어렵습니다. 그것과 달리 이 책은 독자들이 Tensorflow의 아키텍처에 따라 순차적으로 익힐 수 있도록 배열 되어있습니다. 명확한 경로와 예제에 쉽게 접근함으로 써 Tensorflow를 학습을 점진적으로 만듭니다. 
+
+공식 문서의 자세한 설명된 코드와 달리 저자는 읽기 및 구현을 쉽게하기 위해 예제의 길이를 최소화하려고합니다. 또한 대부분의 코드 셀을 프로젝트에서 즉시 사용할 수 있습니다
+
+**공식 문서에서 9시간이 걸린 난이도였다면 이 책으로 배운다면 3시간으로 단축할 수 있습니다.**
+
+난이도의 차이는 아래 그림과 같습니다.
 
 ![](./data/30天吃掉那个TF2.0_en.jpg)
 
@@ -97,17 +97,17 @@ This difference in difficulties could be demonstrated as the following figure:
 
 ```
 
-### 5. How to Learn With This Book ⏰
+### 5. 학습 방법  ⏰
 
-**(1) Study Plan**
+**(1) 학습 계획**
 
-The authors wrote this book using the spare time, especially the two-month unexpected "holiday" of COVID-19. Most readers should be able to completely master all the content within 30 days.
+저자는 이 책을 여유시간을 이용하도록 했습니다. 대부분의 독자는 모든 내용을 30일이면 완료할 수 있습니다. 
 
-Time required everyday would be between 30 minutes to 2 hours.
+매일 30분에서 2시간 정도 필요합니다. 
 
-This book could also be used as library examples to consult when implementing machine learning projects with TensorFlow2.
+Tensorflow2로 머신러닝을 구현할 때, 참조할 라이브러리로 사용할 수도 있습니다. 
 
-**Click the blue captions to enter the corresponding chapter.**
+**아래 파란 글씨를 클릭하면 해당 단원으로 이동합니다.**
 
 
 |Date |Contents                                                       | Difficulties   | Est. Time | Update Status|
@@ -154,21 +154,18 @@ This book could also be used as library examples to consult when implementing ma
 
 ```
 
-**(2) Software environment for studying**
+**(2) 학습을 위한 개발환경**
 
 
-All the source codes are tested in jupyter. It is suggested to clone the repository to local machine and run them in jupyter for an interactive learning experience.
+모든 소스 코드는 jupiter에서 테스트 되었습니다. 리파지토리를 클론한 다음 jupiter에서 실행해가며 배우기를 권장합니다. 
 
-The authors would suggest to install jupytext that converts markdown files into ipynb, so the readers would be able to open markdown files in jupyter directly.
+독자가 마크다운을 jupyter에서 바로 열 수 있도록, 마크다운을 ipynb로 변환해주는 jupytext를 설치하기를 권장합니다. 
 
 ```python
-#For the readers in mainland China, using gitee will allow cloning with a faster speed
-#!git clone https://gitee.com/Python_Ai_Road/eat_tensorflow2_in_30_days
-
-#It is suggested to install jupytext that converts and run markdown files as ipynb.
+#마크다운 파일을 ipynb로 변환해주는 jupytext를 설치하기를 권장합니다. 
 #!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
     
-#It is also suggested to install the latest version of TensorFlow to test the demonstrating code in this book
+#이 책의 코드를 실행해서 테스트 해볼 수 있도록 Tensorflow 최신버전을 설치하기를 권장 합니다. 
 #!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  -U tensorflow
 ```
 
@@ -193,12 +190,12 @@ hello tensorflow2
 
 ```
 
-### 6. Contact and support the author 🎈🎈
+### 6. 저자에게 문의하기 🎈🎈
 
 
-**If you find this book helpful and want to support the author, please give a star ⭐️ to this repository and don't forget to share it to your friends 😊** 
+**책이 도움이 되었고, 저자를 응원한다면, 이 리파지토리에 스타를 주고 친구들에게 알려주세요.😊** 
 
-Please leave comments in the WeChat official account "Python与算法之美" (Elegance of Python and Algorithms) if you want to communicate with the author about the content. The author will try best to reply given the limited time available.
+저자와 책 내용에 대해 이야기 하고 싶다면 위챗 계정 "Python与算法之美" (Elegance of Python and Algorithms) 에 메시지를 남겨주세요. 
 
 ![image.png](./data/Python与算法之美logo.jpg)
 
