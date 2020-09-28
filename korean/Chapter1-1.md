@@ -1,12 +1,11 @@
-# 1-1 Example: Modeling Procedure for Structured Data
+# 1-1 예제: 구조화된 데이터를 위한 모델링 순서 
 
 
-### 1. Data Preparation
+### 1. 데이터 준비 
 
 
-The purpose of the Titanic dataset is to predict whether the given passengers could be survived after Titinic hit the iceburg, according to their personal information.
-
-We usually use DataFrame from the pandas library to pre-process the structured data.
+타이타닉 데이터 셋의 목적은 타이타닉이 빙산에 충돌한 이후 주어진 탑승객 정보를 이용해, 어떤 탑승자가 살아남을 수 있을지를 예측하는 것입니다. 
+일반적으로 Pandas 라이브러리의 DataFrame을 사용하여 데이터를 전처리합니다.
 
 ```python
 import numpy as np 
@@ -23,24 +22,24 @@ dftrain_raw.head(10)
 ![](../data/1-1-数据集展示.jpg)
 
 
-Introduction of each field：
+각 항목에 대한 설명：
 
-* Survived: 0 for death and 1 for survived [y labels]
-* Pclass: Class of the tickets, with three possible values (1,2,3) [converting to one-hot encoding]
-* Name: Name of each passenger [discarded]
-* Sex: Gender of each passenger [converting to bool type]
-* Age: Age of each passenger (partly missing) [numerical feature, should add "Whether age is missing" as auxiliary feature]
-* SibSp: Number of siblings and spouse of each passenger (interger) [numerical feature]
-* Parch: Number of parents/children of each passenger (interger) [numerical feature]
-* Ticket: Ticket number (string) [discarded]
-* Fare: Ticket price of each passenger (float, between 0 to 500) [numerical feature]
-* Cabin: Cabin where each passenger is located (partly missing) [should add "Whether cabin is missing" as auxiliary feature]
-* Embarked: Which port was each passenger embarked, possible values are S、C、Q (partly missing) [converting to one-hot encoding, four dimensions, S,C,Q,nan]
+* Survived: 0 : 사망, 1 : 생존 [y labels]
+* Pclass: 탑승권의 등급, 1,2,3 값을 가짐 [converting to one-hot encoding]
+* Name: 승객 이름 [discarded]
+* Sex: 승객의 성별 [converting to bool type]
+* Age: 승객의 나이 (일부 데이터는 누락됨) [numerical feature, should add "Whether age is missing" as auxiliary feature]
+* SibSp: 승객의 형제, 자매, 배우자 수 (interger) [numerical feature]
+* Parch: 각 승객의 부모와 자녀 수 (interger) [numerical feature]
+* Ticket: 탑승권 번호 (string) [discarded]
+* Fare: 각 승객의 탑승권 가격 (float, between 0 to 500) [numerical feature]
+* Cabin: 각 승객의 선실 위치 (일부 데이터 누락됨) [should add "Whether cabin is missing" as auxiliary feature]
+* Embarked: 각 승객이 탑승한 항구, S, C, Q 값을 가짐 ( 일부 누락됨 ) [converting to one-hot encoding, four dimensions, S,C,Q,nan]
 
 
-Use data visualization in pandas library for initial EDA (Exploratory Data Analysis).
+pandas의 라이브러리를 이용하여 탐색적 데이터 분석을 위한 시각화.
 
-Survival label distribution:
+생존자 분포:
 
 ```python
 %matplotlib inline
@@ -55,7 +54,7 @@ plt.show()
 ![](../data/1-1-Label分布.jpg)
 
 
-Age distribution:
+나이 분포:
 
 ```python
 %matplotlib inline
@@ -71,7 +70,7 @@ plt.show()
 ![](../data/1-1-年龄分布.jpg)
 
 
-Correlation between age and survival label:
+나이와 생존과의 상관 관계:
 
 ```python
 %matplotlib inline
@@ -89,7 +88,7 @@ plt.show()
 ![](../data/1-1-年龄相关性.jpg)
 
 
-Below are code for formal data pre-processing:
+다음은 전처리를 위한 코드 입니다:
 
 ```python
 def preprocessing(dfdata):
@@ -144,12 +143,12 @@ x_test.shape = (179, 15)
 
 ```
 
-### 2. Model Definition
+### 2. 모델 정의
 
 
-Usually there are three ways of modeling using APIs of Keras: sequential modeling using `Sequential()` function, arbitrary modeling using functional API, and customized modeling by inheriting base class `Model`.
+일반적으로 Keras에서 사용하는 모델링 방법은 3가지가 있습니다. : 'Sequential'함수를 이용한 순차 모델링, API를 이용한 임의 모델링, 기본 클래스 'Model'을 상속하여 커스텀 모델링.
 
-Here we take the simplest way: sequential modeling using function `Sequential()`.
+여기서는 가장 간단한 'Sequential'함수를 이용한 순차 모델링 방법을 사용합니다.
 
 ```python
 tf.keras.backend.clear_session()
@@ -180,10 +179,10 @@ _________________________________________________________________
 ```
 
 
-### 3. Model Training
+### 3. 모델 학습 
 
 
-There are three usual ways for model training: use internal function fit, use internal function train_on_batch, and customized training loop. Here we introduce the simplist way: using internal function fit.
+모델을 학습하는데는 일반적으로 3가지 방법이 있습니다. : fit 함수를 사용하는 것, train_in_batch 함수를 이용하는 것, 그리고 사용자가 정의한 반복 학습. 여기서는 가장 간단한 fit 함수를 이용하는 방법을 사용합니다. 
 
 ```python
 # Use binary cross entropy loss function for binary classification
@@ -264,10 +263,10 @@ Epoch 30/30
 ```
 
 
-### 4. Model Evaluation
+### 4. 모델 평가 
 
 
-First, we evaluate the model performance on the training and validation datasets.
+먼저 학습과 검증 데이터셋에서 모델의 성능을 평가합니다. 
 
 ```python
 %matplotlib inline
@@ -301,7 +300,7 @@ plot_metric(history,"AUC")
 ![](../data/1-1-AUC曲线.jpg)
 
 
-Let's take a look at the performance on the testing dataset.
+테스트 데이터 셋에서 성능을 살펴 보겠습니다. 
 
 ```python
 model.evaluate(x = x_test,y = y_test)
@@ -315,7 +314,7 @@ model.evaluate(x = x_test,y = y_test)
 
 ```
 
-### 5. Model Application
+### 5. 모델의 응용 
 
 ```python
 #Predict the possiblities
@@ -358,15 +357,15 @@ array([[0],
 
 ```
 
-### 6. Model Saving
+### 6. 모델의 저장 
 
 
-The trained model could be saved through either the way of Keras or the way of original TensorFlow. The former only allows using Python to retrieve the model, while the latter allows cross-platform deployment.
+학습된 모델은 Keras의 방법이나, Tensorflow의 방법을 이용하여 저장할 수 있습니다. Tensorflow의 방법이 여러 플랫폼에 배포할 수 있는 반면에, Keras의 방법은 나중에 모델을 불러올 수만 있습니다. 
 
-The latter way is recommended to save the model.
+모델을 저장하는 방법은 Tensorflow의 방법을 추천합니다. 
 
 
-**(1) Model Saving with Keras**
+**(1) Keras로 모델 저장하기**
 
 ```python
 # Saving model structure and parameters
@@ -414,7 +413,7 @@ model_json.evaluate(x_test,y_test)
 ```
 
 
-**(2) Model Saving with Original Way of TensorFlow**
+**(2) TensorFlow의 원래 방식대로 모델 저장하기**
 
 ```python
 # Saving the weights, this way only save the tensors of the weights
