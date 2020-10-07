@@ -1,26 +1,26 @@
-# 1-3 Example: Modeling Procedure for Texts
+# 1-3 예제: 문자열 데이터를 위한 모델링 순서
 
 
-### 1. Data Preparation
+### 1. 데이터 준비 
 
 
-The purpose of the imdb dataset is to predict the sentiment label according to the movie reviews.
+imdb 데이터셋의 목적은 영화 리뷰에 따른 감정을 예측하는 것입니다. 
 
-There are 20000 text reviews in the training dataset and 5000 in the testing dataset, with half positive and half negative, respectively.
+각각 절반의 긍정반응과 절반의 부정반응을 가지는 학습을 위한 2000개의 리뷰 문자열과 테스트를 위한 5000개의 문자열이 있습니다. 
 
-The pre-processing of the text dataset is a little bit complex, which includes word division (for Chinese only, not relevant to this demonstration), dictionary construction, encoding, sequence filling, and data pipeline construction, etc.
+문자열 데이터셋의 전처리는 단어구분(아래 설명된 예제와는 관련이 없습니다), 사전 구성, 인코딩, 시퀀스 채우기, 데이터 파이프라인 구성 등이 포함되어 조금 복잡합니다. 
 
-There are two popular mothods of text preparation in TensorFlow.
+TensorFlow에서 문자열 준비에 사용하는 두 가지 방법이 많이 쓰입니다. 
 
-The first one is constructing the text data generator using Tokenizer in `tf.keras.preprocessing`, together with `tf.keras.utils.Sequence`.
+첫 번째는 `tf.keras.preprocessing`의 토커나이저와 `tf.keras.utils.Sequence`를 함께 사용하여 데이터를 생성하는 것입니다. 
 
-The second one is using `tf.data.Dataset`, together with the pre-processing layer `tf.keras.layers.experimental.preprocessing.TextVectorization`.
+두 번째는 `tf.data.Dataset`과 `tf.keras.layers.experimental.preprocessing.TextVectorization` 전처리 레이어를 함께 사용하는 것입니다. 
 
-The former is more complex and is demonstrated [here](https://zhuanlan.zhihu.com/p/67697840).
+첫 번째 방법이 좀 더 복잡하고, 이 글에서 볼 수 있습니다. (https://zhuanlan.zhihu.com/p/67697840)
 
-The latter is the original method of TensorFlow, which is simpler.
+두 번째 방법은 TensorFlow에서 원래 하던 방식이고, 더 간단합니다. 
 
-Below is the introduction to the second method.
+아래 예제는 두 번째 방법입니다. 
 
 
 ![](../data/电影评论.jpg)
@@ -96,12 +96,12 @@ ds_test = ds_test_raw.map(lambda text,label:(vectorize_layer(text),label)) \
 
 ```
 
-### 2. Model Definition
+### 2. 모델의 정의
 
 
-Usually there are three ways of modeling using APIs of Keras: sequential modeling using `Sequential()` function, arbitrary modeling using functional API, and customized modeling by inheriting base class `Model`.
+keras API를 사용하는 모델링은 세 가지 방법이 있습니다. `Sequential()`함수를 이용하는 sequential 모델링. 함수 API를 사용하는 임의의 모델링. 그리고 `Model`클래스를 상속하는 사용자 정의 모델링. 
 
-In this example, we use customized modeling by inheriting base class `Model`.
+아래 예제는 `Model`을 상속하여 사용자 정의 모델링을 한 것입니다. 
 
 ```python
 # Actually, modeling with sequential() or API functions should be priorized.
@@ -180,10 +180,11 @@ _________________________________________________________________
 
 ```
 
-### 3. Model Training
+### 3. 모델의 학습
 
 
-There are three usual ways for model training: use internal function fit, use internal function train_on_batch, and customized training loop. Here we use the customized training loop.
+모델을 학습하는 데는 3가지 방법이 있습니다. fit 함수를 이용하는 방법, train_on_batch를 사용하는 방법과 사용자가 정의한 반복 학습을 사용하는 것. 여기서는사용자가 정의 하는 학습을 진행합니다. 
+
 
 ```python
 # Time Stamp
@@ -286,10 +287,10 @@ Epoch=6,Loss:0.0366807655,Accuracy:0.98825,Valid Loss:0.745884955,Valid Accuracy
 ```
 
 
-### 4. Model Evaluation
+### 4. 모델의 평가
 
 
-The model trained by the customized looping is not compiled, so the method `model.evaluate(ds_valid)` can not be applied directly.
+사용자에의해 반복학습된 모델은 컴파일 되지 않습니다. 그래서 `model.evaluate(ds_valid)`메서드를 직접 사용할 수는 없습니다. 
 
 ```python
 
@@ -318,9 +319,10 @@ Valid Loss:0.745884418,Valid Accuracy:0.854
 
 ```
 
-### 5. Model Application
+### 5. 모델의 적용
 
 
+아래는 사용할 수 있는 메서드 입니다. 
 Below are the available methods:
 
 * model.predict(ds_test)
@@ -328,7 +330,7 @@ Below are the available methods:
 * model.call(x_test)
 * model.predict_on_batch(x_test)
 
-We recommend the method `model.predict(ds_test)` since it can be applied to both Dataset and Tensor.
+Dataset과 Tensor를 모두 적용할 수 있기 때문에 `model.predict(ds_test)`를 사용하는 것을 추천합니다. 
 
 ```python
 model.predict(ds_test)
@@ -380,10 +382,10 @@ tf.Tensor(
 
 ```
 
-### 6. Model Saving
+### 6. 모델의 저장 
 
 
-Model saving with the original way of TensorFlow is recommended.
+모델을 저장하는 것은 TensorFlow의 원래 방식을 사용하는 것이 권장됩니다. 
 
 ```python
 model.save('../data/tf_model_savedmodel', save_format="tf")
